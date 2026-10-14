@@ -50,6 +50,9 @@ mcp = MCPServer(
     auth=AuthSettings(
         issuer_url="http://localhost:8000",
         resource_server_url="http://localhost:8000",
+        # StaticTokenVerifier below performs the complete validation for this
+        # local demo, so resource/audience validation is intentionally off.
+        validate_token_resource=False,
     ),
     token_verifier=StaticTokenVerifier(),
 )

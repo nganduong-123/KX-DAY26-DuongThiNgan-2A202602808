@@ -27,7 +27,8 @@ def check_environment():
         print("   Get key from: https://aistudio.google.com/apikey")
         return False
     
-    print(f"✅ GOOGLE_API_KEY configured ({api_key[:10]}...)")
+    # Never print even a prefix of a credential into terminal screenshots.
+    print("✅ GOOGLE_API_KEY configured (redacted)")
     return True
 
 def check_dependencies():
@@ -36,7 +37,7 @@ def check_dependencies():
     
     required_packages = [
         ("google.adk", "Google ADK"),
-        ("google.generativeai", "Google Generative AI"),
+        ("google.genai", "Google Gen AI SDK"),
         ("mcp", "MCP"),
         ("fastmcp", "FastMCP"),
         ("dotenv", "python-dotenv"),

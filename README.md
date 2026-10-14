@@ -1,5 +1,7 @@
 # Phân biệt MCP và Function Calling
 
+> Báo cáo chạy lab và toàn bộ ảnh minh chứng: [`LAB_REPORT.md`](LAB_REPORT.md)
+
 Đây là hai khái niệm hay bị nhầm lẫn nhưng thực ra ở **hai tầng khác nhau**, và **bổ sung cho nhau** chứ không thay thế.
 
 ## Cấu trúc repo

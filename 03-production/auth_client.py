@@ -46,4 +46,14 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except BaseException as exc:
+        # MCP transports use task groups, so an HTTP 401 may be wrapped in an
+        # ExceptionGroup.  Keep the negative-auth demo readable while still
+        # returning a non-zero exit code.
+        current = exc
+        while isinstance(current, BaseExceptionGroup) and current.exceptions:
+            current = current.exceptions[0]
+        print(f"Kết nối bị từ chối: {current}")
+        raise SystemExit(1)

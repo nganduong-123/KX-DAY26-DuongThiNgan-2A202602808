@@ -11,10 +11,13 @@ Cách chạy:
 
 from google import genai
 from google.genai import types
+import os
 
 client = genai.Client()
 
-MODEL = "gemini-2.5-flash"
+# Gemini 2.5 Flash was retired for new users.  Keep the model configurable so
+# the lab remains runnable when Google rotates model versions.
+MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 
 SYSTEM_INSTRUCTION = (
     "Bạn là trợ lý thời tiết thân thiện, trả lời bằng tiếng Việt tự nhiên. "

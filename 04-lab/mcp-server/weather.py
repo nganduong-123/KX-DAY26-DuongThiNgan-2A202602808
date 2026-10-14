@@ -137,6 +137,8 @@ async def health_check() -> str:
 
 print("✅ MCP server initialized with Streamable HTTP transport")
 print("🔧 Available tools: get_current_weather, get_forecast, health_check")
+if not API_KEY:
+    print("⚠️  WEATHERAPI_KEY is not set; health_check works, weather tools return a configuration error")
 
 if __name__ == "__main__":
     import sys
