@@ -7,7 +7,8 @@ A weather agent built with Google ADK that connects to an MCP server via Streama
 ```
 ┌─────────────────┐   Streamable HTTP    ┌─────────────────┐      REST       ┌─────────────────┐
 │   ADK Agent     │ ──────────────────── │   MCP Server    │ ─────────────── │  WeatherAPI.com │
-│  (mcp-client)   │   localhost:8085/mcp │  (mcp-server)   │                 │                 │
+│  (mcp-client)   │   localhost:8085/mcp │  (mcp-server)   │                 │ WeatherAPI /    │
+│                 │                      │                 │                 │ Open-Meteo      │
 └─────────────────┘                      └─────────────────┘                 └─────────────────┘
 ```
 
@@ -65,6 +66,10 @@ uv run python weather.py
 
 The server will be available at `http://localhost:8085/mcp`.
 
+`WEATHERAPI_KEY` is optional for local learning: when it is absent, the server
+uses Open-Meteo as a keyless live-data fallback. When the key is present,
+WeatherAPI remains the primary provider required by the original exercise.
+
 ### 2. ADK Agent (Client)
 
 ```bash
@@ -84,7 +89,7 @@ Open http://localhost:8000 in your browser, select `weather_agent`, and ask abou
 
 | Variable | Where | Description |
 |----------|-------|-------------|
-| `WEATHERAPI_KEY` | mcp-server | API key from weatherapi.com |
+| `WEATHERAPI_KEY` | mcp-server | Optional API key from weatherapi.com; without it the server uses Open-Meteo |
 | `GOOGLE_API_KEY` | mcp-client/.env | Gemini API key |
 | `PORT` | mcp-server (env) | Override server port (default: 8085) |
 | `MCP_SERVER_URL` | mcp-client/.env | MCP endpoint the agent connects to (default: `http://localhost:8085/mcp`; set to your Cloud Run URL + `/mcp` when deployed) |
